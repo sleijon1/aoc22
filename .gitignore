@@ -1,1 +1,4 @@
-aoc_input
+aoc_input.py
+env
+__pycache__
+.vscode
