@@ -10,18 +10,10 @@ rows = crates.splitlines()
 stacks = defaultdict(list)
 for line in rows[:-1]:
     row_crates = []
-    stack_index, empty = 1, 0
-    for char in line.split(" "):
-        if empty == 4:
-            stack_index += 1
-            empty = 0
-        if char:
-            row_crates.append((stack_index, char))
-            stack_index += 1
-        else:
-            empty += 1
-    for i, crate in row_crates:
-        stacks[i].insert(0, crate)
+    indexed_row = re.findall(r"([A-Z]|    )", line)
+    for i, value in enumerate(indexed_row):
+        if value[0] != " ":
+            stacks[i+1].insert(0, value)
 
 stacks_b = deepcopy(stacks)
 for instruction in instructions.splitlines():
@@ -32,7 +24,7 @@ for instruction in instructions.splitlines():
     stacks_b[from_] = stacks_b[from_][:-move]
 
 
-
-answer = "".join([val[-1].strip("[").strip("]") for key, val in sorted(stacks.items(), key=lambda x: x[0])])
-answer_b = "".join([val[-1].strip("[").strip("]") for key, val in sorted(stacks_b.items(), key=lambda x: x[0])])
+answer = "".join([val[-1].strip("[").strip("]") for _, val in sorted(stacks.items(), key=lambda x: x[0])])
+answer_b = "".join([val[-1].strip("[").strip("]") for _, val in sorted(stacks_b.items(), key=lambda x: x[0])])
+print(answer, answer_b)
 # submit(answer_b, level=2)
