@@ -18,8 +18,8 @@ for line in rows[:-1]:
 stacks_b = deepcopy(stacks)
 for instruction in instructions.splitlines():
     move, from_, to = map(int, re.findall('[0-9]+', instruction))
-    for _ in range(move):
-        stacks[to].append(stacks[from_].pop())
+    stacks[to] += stacks[from_][-move:][::-1]
+    stacks[from_] = stacks[from_][:-move]
     stacks_b[to] += stacks_b[from_][-move:]
     stacks_b[from_] = stacks_b[from_][:-move]
 
