@@ -2,13 +2,12 @@ from aocutils.clients.client import fetch, submit
 
 fetch()
 
-characters = open("day6/inputs.txt").read().strip()
+characters = open("day6/input.txt").read().strip()
 def find_sequence(length):
-    value = 0
     for i, _ in enumerate(characters):
         if len(set(characters[i:i+length])) == length:
-            value = i+length
-            break
-    return value
+            return i+length
 
-submit(find_sequence(14), level=2)
+print(find_sequence(4), find_sequence(14))
+# submit(find_sequence(4), level=1)
+# submit(find_sequence(14), level=2)
