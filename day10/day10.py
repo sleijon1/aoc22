@@ -16,6 +16,9 @@ def run_cycle():
     column = (cycle-1) % 40
     if column in (X-1, X, X+1):
         crt[row][column] = '#'
+    if cycle == 20 or (20+cycle) % 40 == 0:
+        print(cycle, X)
+        segments.append(X*cycle)
     cycle += 1
 
 
@@ -27,12 +30,9 @@ while i < len(ops):
             run_cycle()
             if k == 1:
                 X += last_val
-            if cycle == 20 or (20+cycle) % 40 == 0:
-                segments.append(X*cycle)
     else:
         run_cycle()
-        if (cycle == 20 or (20+cycle) % 40 == 0):
-            segments.append(X*(cycle))
+
     i += 1
 
 print(sum(segments))
