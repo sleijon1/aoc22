@@ -11,7 +11,7 @@ x = (b*n*a + r)
 
 x % n = (b*n*a + r) % n
 
-(b\*n\*a + r) % n = (b\*n\*a % n + r % n) % n
+(b*n*a + r) % n = (b*n*a % n + r % n) % n
 
 r % n % n = r % n = x%K%n
 ```
