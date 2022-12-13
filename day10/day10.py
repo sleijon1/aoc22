@@ -11,13 +11,11 @@ crt = [['.' for _ in range(40)] for _ in range(6)]
 
 def run_cycle():
     global X, cycle
-
     row = (cycle-1) // 40
     column = (cycle-1) % 40
     if column in (X-1, X, X+1):
         crt[row][column] = '#'
     if cycle == 20 or (20+cycle) % 40 == 0:
-        print(cycle, X)
         segments.append(X*cycle)
     cycle += 1
 
